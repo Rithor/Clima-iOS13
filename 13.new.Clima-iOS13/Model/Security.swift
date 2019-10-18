@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+struct Security {
+    static let appid = "88f72a2915ee8b8d9181d142db90c6df"
+}

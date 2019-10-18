@@ -16,9 +16,13 @@ class WeatherScreenVC: UIViewController {
     @IBOutlet weak var weatherMeasureLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
     
+    let weatherManager = WeatherManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchTextField.delegate = self
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapRecognized))
+        view.addGestureRecognizer(tapGesture)
     }
     
     //MARK: - IBActions
@@ -26,16 +30,27 @@ class WeatherScreenVC: UIViewController {
     }
     
     @IBAction func actionSearchCustomCity(_ sender: Any) {
+        searchTextField.endEditing(true)
+        if let city = searchTextField.text {
+            weatherManager.fetchWeather(cityName: city)
+        }
+        searchTextField.text = ""
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    //MARK: - UITapGestureRecognizer
+    @objc private func tapRecognized() {
+        searchTextField.endEditing(true)
+    }
+    
+}
+
+//MARK: - UITextFieldDelegate
+extension WeatherScreenVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == searchTextField {
+            actionSearchCustomCity(textField)
+        }
+        return true
+    }
     
 }
