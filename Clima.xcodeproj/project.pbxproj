@@ -16,7 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1D05A7DD235996DE0038DA54 /* 13.new.Clima-iOS13.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "13.new.Clima-iOS13.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D05A7DD235996DE0038DA54 /* Clima.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clima.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D05A7E0235996DE0038DA54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1D05A7E2235996DE0038DA54 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		1D05A7E4235996DE0038DA54 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -48,7 +48,7 @@
 		1D05A7DE235996DE0038DA54 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D05A7DD235996DE0038DA54 /* 13.new.Clima-iOS13.app */,
+				1D05A7DD235996DE0038DA54 /* Clima.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -56,23 +56,55 @@
 		1D05A7DF235996DE0038DA54 /* 13.new.Clima-iOS13 */ = {
 			isa = PBXGroup;
 			children = (
-				1D05A7E0235996DE0038DA54 /* AppDelegate.swift */,
-				1D05A7E2235996DE0038DA54 /* SceneDelegate.swift */,
-				1D05A7E4235996DE0038DA54 /* ViewController.swift */,
-				1D05A7E6235996DE0038DA54 /* Main.storyboard */,
-				1D05A7E9235996E10038DA54 /* Assets.xcassets */,
-				1D05A7EB235996E10038DA54 /* LaunchScreen.storyboard */,
-				1D05A7EE235996E10038DA54 /* Info.plist */,
+				1D05A7F62359975E0038DA54 /* Controler */,
+				1D05A7F5235997570038DA54 /* View */,
+				1D05A7F42359974E0038DA54 /* Model */,
+				1D05A7F7235997700038DA54 /* Support Files */,
 			);
 			path = "13.new.Clima-iOS13";
+			sourceTree = "<group>";
+		};
+		1D05A7F42359974E0038DA54 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1D05A7F5235997570038DA54 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1D05A7E6235996DE0038DA54 /* Main.storyboard */,
+				1D05A7EB235996E10038DA54 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1D05A7F62359975E0038DA54 /* Controler */ = {
+			isa = PBXGroup;
+			children = (
+				1D05A7E4235996DE0038DA54 /* ViewController.swift */,
+			);
+			path = Controler;
+			sourceTree = "<group>";
+		};
+		1D05A7F7235997700038DA54 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				1D05A7E0235996DE0038DA54 /* AppDelegate.swift */,
+				1D05A7E2235996DE0038DA54 /* SceneDelegate.swift */,
+				1D05A7E9235996E10038DA54 /* Assets.xcassets */,
+				1D05A7EE235996E10038DA54 /* Info.plist */,
+			);
+			path = "Support Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D05A7DC235996DE0038DA54 /* 13.new.Clima-iOS13 */ = {
+		1D05A7DC235996DE0038DA54 /* ClimaiOS13 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D05A7F1235996E10038DA54 /* Build configuration list for PBXNativeTarget "13.new.Clima-iOS13" */;
+			buildConfigurationList = 1D05A7F1235996E10038DA54 /* Build configuration list for PBXNativeTarget "ClimaiOS13" */;
 			buildPhases = (
 				1D05A7D9235996DE0038DA54 /* Sources */,
 				1D05A7DA235996DE0038DA54 /* Frameworks */,
@@ -82,9 +114,9 @@
 			);
 			dependencies = (
 			);
-			name = "13.new.Clima-iOS13";
+			name = ClimaiOS13;
 			productName = "13.new.Clima-iOS13";
-			productReference = 1D05A7DD235996DE0038DA54 /* 13.new.Clima-iOS13.app */;
+			productReference = 1D05A7DD235996DE0038DA54 /* Clima.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -102,7 +134,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 1D05A7D8235996DE0038DA54 /* Build configuration list for PBXProject "13.new.Clima-iOS13" */;
+			buildConfigurationList = 1D05A7D8235996DE0038DA54 /* Build configuration list for PBXProject "Clima" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -115,7 +147,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1D05A7DC235996DE0038DA54 /* 13.new.Clima-iOS13 */,
+				1D05A7DC235996DE0038DA54 /* ClimaiOS13 */,
 			);
 		};
 /* End PBXProject section */
@@ -216,6 +248,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "13.new.Clima-iOS13/Support Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -270,6 +303,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "13.new.Clima-iOS13/Support Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -286,15 +320,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7H74985F78;
-				INFOPLIST_FILE = "13.new.Clima-iOS13/Info.plist";
+				INFOPLIST_FILE = "13.new.Clima-iOS13/Support Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.vitaliyandrianov.-3-new-Clima-iOS13";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Clima;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -304,22 +338,22 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7H74985F78;
-				INFOPLIST_FILE = "13.new.Clima-iOS13/Info.plist";
+				INFOPLIST_FILE = "13.new.Clima-iOS13/Support Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.vitaliyandrianov.-3-new-Clima-iOS13";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Clima;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D05A7D8235996DE0038DA54 /* Build configuration list for PBXProject "13.new.Clima-iOS13" */ = {
+		1D05A7D8235996DE0038DA54 /* Build configuration list for PBXProject "Clima" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D05A7EF235996E10038DA54 /* Debug */,
@@ -328,7 +362,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1D05A7F1235996E10038DA54 /* Build configuration list for PBXNativeTarget "13.new.Clima-iOS13" */ = {
+		1D05A7F1235996E10038DA54 /* Build configuration list for PBXNativeTarget "ClimaiOS13" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D05A7F2235996E10038DA54 /* Debug */,
