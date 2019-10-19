@@ -138,7 +138,7 @@
         <image name="location.circle.fill" catalog="system" width="64" height="60"/>
         <image name="magnifyingglass.circle.fill" catalog="system" width="64" height="60"/>
         <namedColor name="LabelColor">
-            <color red="0.090857721870000005" green="0.20753631" blue="0.22353431579999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.090999998152256012" green="0.20800000429153442" blue="0.22400000691413879" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
     </resources>
 </document>

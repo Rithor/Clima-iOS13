@@ -16,11 +16,12 @@ class WeatherScreenVC: UIViewController {
     @IBOutlet weak var weatherMeasureLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
     
-    let weatherManager = WeatherManager()
+    var weatherManager = WeatherManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         searchTextField.delegate = self
+        weatherManager.delegate = self
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapRecognized))
         view.addGestureRecognizer(tapGesture)
     }
@@ -52,5 +53,20 @@ extension WeatherScreenVC: UITextFieldDelegate {
         }
         return true
     }
+
+}
+
+//MARK: - WeatherManagerDelegate
+extension WeatherScreenVC: WeatherManagerDelegate {
+    func didUpdateWeather(model: WeatherModel) {
+        DispatchQueue.main.async {
+            self.weatherConditionImage.image = UIImage(systemName: model.conditionalImageName)
+            self.tempatureValue.text = model.temperatureFormattedString
+            self.cityLabel.text = model.cityName
+        }
+    }
     
+    func didFailWith(error: Error) {
+        print(error)
+    }
 }
