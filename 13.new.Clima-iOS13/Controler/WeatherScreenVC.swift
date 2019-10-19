@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class WeatherScreenVC: UIViewController {
     
@@ -17,17 +18,25 @@ class WeatherScreenVC: UIViewController {
     @IBOutlet weak var cityLabel: UILabel!
     
     var weatherManager = WeatherManager()
+    let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         searchTextField.delegate = self
         weatherManager.delegate = self
+        locationManager.delegate = self
+        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapRecognized))
         view.addGestureRecognizer(tapGesture)
+        
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestLocation()
     }
     
     //MARK: - IBActions
     @IBAction func actionSearchCurrentLocation(_ sender: Any) {
+        locationManager.requestLocation()
     }
     
     @IBAction func actionSearchCustomCity(_ sender: Any) {
@@ -58,7 +67,7 @@ extension WeatherScreenVC: UITextFieldDelegate {
 
 //MARK: - WeatherManagerDelegate
 extension WeatherScreenVC: WeatherManagerDelegate {
-    func didUpdateWeather(model: WeatherModel) {
+    func didUpdateWeather(_ manager: WeatherManager, model: WeatherModel) {
         DispatchQueue.main.async {
             self.weatherConditionImage.image = UIImage(systemName: model.conditionalImageName)
             self.tempatureValue.text = model.temperatureFormattedString
@@ -68,5 +77,31 @@ extension WeatherScreenVC: WeatherManagerDelegate {
     
     func didFailWith(error: Error) {
         print(error)
+    }
+}
+
+//MARK: - CLLocationManagerDelegate
+extension WeatherScreenVC: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let userCoordinate = locations.last?.coordinate {
+            locationManager.stopUpdatingLocation()
+            weatherManager.fetchWeather(latitude: userCoordinate.latitude,
+                                        longitude: userCoordinate.longitude)
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .authorizedAlways: print("AuthorizationStatus = authorizedAlways")
+        case .authorizedWhenInUse: print("AuthorizationStatus = authorizedWhenInUse")
+        case .denied: print("AuthorizationStatus = denied")
+        case .notDetermined: print("AuthorizationStatus = notDetermined")
+        case .restricted: print("AuthorizationStatus = restricted")
+        @unknown default: print("CLAuthorizationStatus unrecognized")
+        }
     }
 }

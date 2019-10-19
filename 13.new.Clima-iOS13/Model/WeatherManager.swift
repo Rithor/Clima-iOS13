@@ -19,6 +19,11 @@ struct WeatherManager {
         performRequestWith(with: finalURL)
     }
     
+    func fetchWeather(latitude: Double, longitude: Double) {
+        let finalURL = "\(weatherURL)&lat=\(latitude)&lon=\(longitude)"
+        performRequestWith(with: finalURL)
+    }
+    
     private func performRequestWith(with stringURL: String) { //TODO: throws error
         guard let url = URL(string: stringURL) else { return } //TODO: alert if return
         
@@ -30,7 +35,7 @@ struct WeatherManager {
             guard let weatherData = data else { return } //TODO: alert if return
             guard let weatherModel = self.parceJSON(weatherData) else { return }
             
-            self.delegate?.didUpdateWeather(model: weatherModel)
+            self.delegate?.didUpdateWeather(self, model: weatherModel)
         }.resume()
     }
     
@@ -51,6 +56,6 @@ struct WeatherManager {
 }
 
 protocol WeatherManagerDelegate {
-    func didUpdateWeather(model: WeatherModel)
+    func didUpdateWeather(_ manager: WeatherManager, model: WeatherModel)
     func didFailWith(error: Error)
 }
