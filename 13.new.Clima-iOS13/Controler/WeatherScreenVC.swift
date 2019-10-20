@@ -16,6 +16,7 @@ class WeatherScreenVC: UIViewController {
     @IBOutlet weak var tempatureValue: UILabel!
     @IBOutlet weak var weatherMeasureLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var weatherManager = WeatherManager()
     let locationManager = CLLocationManager()
@@ -36,10 +37,13 @@ class WeatherScreenVC: UIViewController {
     
     //MARK: - IBActions
     @IBAction func actionSearchCurrentLocation(_ sender: Any) {
+        activityIndicator.isHidden = false
+        searchTextField.endEditing(true)
         locationManager.requestLocation()
     }
     
     @IBAction func actionSearchCustomCity(_ sender: Any) {
+        activityIndicator.isHidden = false
         searchTextField.endEditing(true)
         if let city = searchTextField.text {
             weatherManager.fetchWeather(cityName: city)
@@ -51,7 +55,6 @@ class WeatherScreenVC: UIViewController {
     @objc private func tapRecognized() {
         searchTextField.endEditing(true)
     }
-    
 }
 
 //MARK: - UITextFieldDelegate
@@ -62,7 +65,6 @@ extension WeatherScreenVC: UITextFieldDelegate {
         }
         return true
     }
-
 }
 
 //MARK: - WeatherManagerDelegate
@@ -72,11 +74,24 @@ extension WeatherScreenVC: WeatherManagerDelegate {
             self.weatherConditionImage.image = UIImage(systemName: model.conditionalImageName)
             self.tempatureValue.text = model.temperatureFormattedString
             self.cityLabel.text = model.cityName
+            self.activityIndicator.isHidden = true
         }
     }
     
     func didFailWith(error: Error) {
-        print(error)
+        activityIndicator.isHidden = true
+        if let error = error as? WeatherManagerError {
+            switch error {
+            case .failAPIError(message: let message):
+                CommonFunc.showAlertWith(message: message, sender: self)
+            case .failInitURL:
+                print("failInitURL")
+            case .failUnwrapDataFromServer:
+                print("failUnwrapDataFromServer")
+            }
+        } else {
+            print(error.localizedDescription)
+        }
     }
 }
 
@@ -91,6 +106,7 @@ extension WeatherScreenVC: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        activityIndicator.isHidden = true
         print(error)
     }
     

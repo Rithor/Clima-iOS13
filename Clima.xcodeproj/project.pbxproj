@@ -18,6 +18,7 @@
 		1D05A7FF2359C92C0038DA54 /* Security.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D05A7FE2359C92C0038DA54 /* Security.swift */; };
 		1D05A8012359EC3C0038DA54 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D05A8002359EC3C0038DA54 /* WeatherData.swift */; };
 		1D891023235AEA4D00A8E374 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D891022235AEA4D00A8E374 /* WeatherModel.swift */; };
+		1DAA81E8235C43130070F7E0 /* CommonFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAA81E7235C43130070F7E0 /* CommonFunc.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		1D05A7FE2359C92C0038DA54 /* Security.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Security.swift; sourceTree = "<group>"; };
 		1D05A8002359EC3C0038DA54 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 		1D891022235AEA4D00A8E374 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
+		1DAA81E7235C43130070F7E0 /* CommonFunc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonFunc.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 		1D05A7F7235997700038DA54 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
+				1DAA81E7235C43130070F7E0 /* CommonFunc.swift */,
 				1D05A7E0235996DE0038DA54 /* AppDelegate.swift */,
 				1D05A7E2235996DE0038DA54 /* SceneDelegate.swift */,
 				1D05A7E9235996E10038DA54 /* Assets.xcassets */,
@@ -186,6 +189,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DAA81E8235C43130070F7E0 /* CommonFunc.swift in Sources */,
 				1D05A7FB2359A2070038DA54 /* WeatherScreenVC.swift in Sources */,
 				1D05A7E1235996DE0038DA54 /* AppDelegate.swift in Sources */,
 				1D05A7FD2359C78D0038DA54 /* WeatherManager.swift in Sources */,

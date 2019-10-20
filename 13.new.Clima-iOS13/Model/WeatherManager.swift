@@ -24,17 +24,23 @@ struct WeatherManager {
         performRequestWith(with: finalURL)
     }
     
-    private func performRequestWith(with stringURL: String) { //TODO: throws error
-        guard let url = URL(string: stringURL) else { return } //TODO: alert if return
-        
+    private func performRequestWith(with stringURL: String) {
+        guard let url = URL(string: stringURL) else {
+            delegate?.didFailWith(error: WeatherManagerError.failInitURL)
+            return
+        }
         URLSession(configuration: .default).dataTask(with: url) { (data, response, error) in
             guard error == nil else {
                 self.delegate?.didFailWith(error: error!)
                 return
             }
-            guard let weatherData = data else { return } //TODO: alert if return
-            guard let weatherModel = self.parceJSON(weatherData) else { return }
-            
+            guard let weatherData = data else {
+                self.delegate?.didFailWith(error: WeatherManagerError.failUnwrapDataFromServer)
+                return
+            }
+            guard let weatherModel = self.parceJSON(weatherData) else {
+                return
+            }
             self.delegate?.didUpdateWeather(self, model: weatherModel)
         }.resume()
     }
@@ -42,20 +48,30 @@ struct WeatherManager {
     private func parceJSON(_ data: Data) -> WeatherModel? {
         do {
             let decodableData = try JSONDecoder().decode(WeatherData.self, from: data)
-            let weather = WeatherModel(cityName: decodableData.name,
-                                       temperature: decodableData.main.temp,
-                                       conditionalDescription: decodableData.weather[0].description,
-                                       conditionalID: decodableData.weather[0].id)
-            return weather
+            if let errorMessage = decodableData.message { //message be send only error
+                delegate?.didFailWith(error: WeatherManagerError.failAPIError(message: errorMessage))
+                return nil
+            } else {
+                let weather = WeatherModel(cityName: decodableData.name!,
+                                           temperature: decodableData.main!.temp,
+                                           conditionalDescription: decodableData.weather![0].description,
+                                           conditionalID: decodableData.weather![0].id)
+                return weather
+            }
         } catch {
             delegate?.didFailWith(error: error)
             return nil
         }
     }
-    
 }
 
 protocol WeatherManagerDelegate {
     func didUpdateWeather(_ manager: WeatherManager, model: WeatherModel)
     func didFailWith(error: Error)
+}
+
+enum WeatherManagerError: Error {
+    case failAPIError(message: String)
+    case failInitURL
+    case failUnwrapDataFromServer
 }

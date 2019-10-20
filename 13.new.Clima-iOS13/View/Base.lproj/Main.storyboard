@@ -104,6 +104,13 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="OMW-Sd-5Cd">
+                                <rect key="frame" x="162.66666666666666" y="381" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="0tY-Ic-vPZ"/>
+                                    <constraint firstAttribute="height" constant="50" id="5u5-4o-Veg"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -112,14 +119,17 @@
                             <constraint firstAttribute="bottom" secondItem="DVL-N8-L5h" secondAttribute="bottom" id="2Zu-QF-rVk"/>
                             <constraint firstItem="IgI-Hr-JSe" firstAttribute="top" secondItem="gcn-dl-QFD" secondAttribute="bottom" constant="8" symbolic="YES" id="DgK-kc-8hm"/>
                             <constraint firstItem="gcn-dl-QFD" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="Sef-fE-gjr"/>
+                            <constraint firstItem="OMW-Sd-5Cd" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Sqm-86-d8n"/>
                             <constraint firstItem="gcn-dl-QFD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="W62-cu-dWR"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gcn-dl-QFD" secondAttribute="trailing" constant="20" id="Xct-6w-fcb"/>
+                            <constraint firstItem="OMW-Sd-5Cd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ocH-jg-YLv"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="IgI-Hr-JSe" secondAttribute="trailing" constant="20" id="uHg-HR-Qad"/>
                             <constraint firstAttribute="trailing" secondItem="DVL-N8-L5h" secondAttribute="trailing" id="yg1-Hx-BII"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="OMW-Sd-5Cd" id="mKT-gI-Yng"/>
                         <outlet property="cityLabel" destination="s3T-gM-T3q" id="FyQ-iM-kuw"/>
                         <outlet property="searchTextField" destination="wao-L0-seP" id="tWC-YX-tHX"/>
                         <outlet property="tempatureValue" destination="4Rn-lG-hHK" id="Zei-tu-DJt"/>
