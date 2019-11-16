@@ -11,7 +11,7 @@ import Foundation
 struct WeatherManager {
     
     var delegate: WeatherManagerDelegate?
-    let weatherURL =
+    private let weatherURL =
     "https://api.openweathermap.org/data/2.5/weather?appid=\(Security.appid)&units=metric"
     
     func fetchWeather(cityName: String) {
@@ -48,15 +48,21 @@ struct WeatherManager {
     private func parceJSON(_ data: Data) -> WeatherModel? {
         do {
             let decodableData = try JSONDecoder().decode(WeatherData.self, from: data)
-            if let errorMessage = decodableData.message { //message be send only error
+            if let errorMessage = decodableData.message { //message be send only with error
                 delegate?.didFailWith(error: WeatherManagerError.failAPIError(message: errorMessage))
                 return nil
             } else {
-                let weather = WeatherModel(cityName: decodableData.name!,
-                                           temperature: decodableData.main!.temp,
-                                           conditionalDescription: decodableData.weather![0].description,
-                                           conditionalID: decodableData.weather![0].id)
+                guard let decodableCityName = decodableData.name,
+                    let decodableTemperature = decodableData.main?.temp,
+                    let decodableDescription = decodableData.weather?[0].description,
+                    let decodableID = decodableData.weather?[0].id
+                    else { return nil }
+                let weather = WeatherModel(cityName: decodableCityName,
+                                           temperature: decodableTemperature,
+                                           conditionalDescription: decodableDescription,
+                                           conditionalID: decodableID)
                 return weather
+                
             }
         } catch {
             delegate?.didFailWith(error: error)

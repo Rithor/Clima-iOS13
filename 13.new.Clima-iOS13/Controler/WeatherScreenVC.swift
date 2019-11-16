@@ -11,15 +11,16 @@ import CoreLocation
 
 class WeatherScreenVC: UIViewController {
     
-    @IBOutlet weak var searchTextField: UITextField!
-    @IBOutlet weak var weatherConditionImage: UIImageView!
-    @IBOutlet weak var tempatureValue: UILabel!
-    @IBOutlet weak var weatherMeasureLabel: UILabel!
-    @IBOutlet weak var cityLabel: UILabel!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet private weak var searchTextField: UITextField!
+    @IBOutlet private weak var weatherConditionImage: UIImageView!
+    @IBOutlet private weak var tempatureValue: UILabel!
+    @IBOutlet private weak var weatherMeasureLabel: UILabel!
+    @IBOutlet private weak var cityLabel: UILabel!
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet private weak var currentLocationButton: UIButton!
     
-    var weatherManager = WeatherManager()
-    let locationManager = CLLocationManager()
+    private var weatherManager = WeatherManager()
+    private let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,13 +37,15 @@ class WeatherScreenVC: UIViewController {
     }
     
     //MARK: - IBActions
-    @IBAction func actionSearchCurrentLocation(_ sender: Any) {
+    @IBAction private func actionSearchCurrentLocation(_ sender: Any) {
         activityIndicator.isHidden = false
+        currentLocationButton.isUserInteractionEnabled = false
         searchTextField.endEditing(true)
         locationManager.requestLocation()
     }
     
-    @IBAction func actionSearchCustomCity(_ sender: Any) {
+    @IBAction private func actionSearchCustomCity(_ sender: Any) {
+        guard !searchTextField.text!.isEmpty else { return }
         activityIndicator.isHidden = false
         searchTextField.endEditing(true)
         if let city = searchTextField.text {
@@ -79,7 +82,9 @@ extension WeatherScreenVC: WeatherManagerDelegate {
     }
     
     func didFailWith(error: Error) {
-        activityIndicator.isHidden = true
+        DispatchQueue.main.async {
+            self.activityIndicator.isHidden = true
+        }
         if let error = error as? WeatherManagerError {
             switch error {
             case .failAPIError(message: let message):
@@ -102,6 +107,7 @@ extension WeatherScreenVC: CLLocationManagerDelegate {
             locationManager.stopUpdatingLocation()
             weatherManager.fetchWeather(latitude: userCoordinate.latitude,
                                         longitude: userCoordinate.longitude)
+            currentLocationButton.isUserInteractionEnabled = true
         }
     }
     
