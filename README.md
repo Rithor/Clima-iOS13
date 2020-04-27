@@ -6,6 +6,6 @@
 использован паттерн Delegate, обработка ошибок с протоколом Error, смена UI в DarkMode, Auto Layout, SFSymbols. 
 Запрос данных с API с помощью URLSession, обработка ответа JSON с помощью протокола Codable.
 
-![LightMode](LightMode.png)
 
-![DarkMode](DarkMode.png)
+<img src="https://github.com/Rithor/Clima-iOS13/blob/master/DarkMode.png" width="100">
+<img src="https://github.com/Rithor/Clima-iOS13/blob/master/LightMode.png" width="100">
